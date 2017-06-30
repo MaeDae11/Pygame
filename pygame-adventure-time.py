@@ -1,30 +1,22 @@
 import pygame
+import random
 
-
-# class Character(pygame.sprite.Sprite):
-#     def __init__(self):
-#         pygame.sprite.Sprite.__init__(self)
-#         self.x = x
-#         self.y = y
-#         self.rect = self.image.get_rect()
-
-#     def __repr__(self):
-#         pass
-
-
-class Hero(object):
-    def __init__(self, image):
+class Hero(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         x = 10
         y = 250
-        self.image = image
+        self.image = pygame.image.load('images/finn.png')
+        self.react =self.image.get_rect()
         self.x = x
         self.y = y
 
 
-class First_Row(object):
+class First_Row(pygame.sprite.Sprite):
     def __init__(self, image, y):
+        pygame.sprite.Sprite.__init__(self)
         x = 80
-        self.image = image
+        self.image = pygame.image.load(image)
         self.y = y
         self.x = x
         self.speed_y = 2
@@ -35,25 +27,12 @@ class First_Row(object):
         if self.y >= 680:
             self.y = 10
 
-# class lemon_man(object):
-#     def __init__(self, image):
-#         x = 60
-#         y = 100
-#         self.image = image
-#         self.x = x
-#         self.y = y
-#         self.speed_y = 2
-#         self.speed_x = 2
 
-#     def update(self):
-#         self.y += self.speed_y
-#         if self.y == 480:
-#             self.y = 10
-
-class Second_Row(object):
+class Second_Row(pygame.sprite.Sprite):
     def __init__(self, image, y):
+        pygame.sprite.Sprite.__init__(self)
         x = 275
-        self.image = image
+        self.image = pygame.image.load(image)
         self.x = x
         self.y = y
         self.speed_y = 3
@@ -65,10 +44,11 @@ class Second_Row(object):
             self.y = 10
 
 
-class Third_Row(object):
+class Third_Row(pygame.sprite.Sprite):
     def __init__(self, image, y):
+        pygame.sprite.Sprite.__init__(self)
         x = 500
-        self.image = image
+        self.image = pygame.image.load(image)
         self.x = x
         self.y = y
         self.speed_y = 4
@@ -100,36 +80,34 @@ def main():
     # background image of treese
     background_image = pygame.image.load('images/background.png').convert_alpha()
 
+    # monster images
+    magic_man = 'images/magic_man.png'
+    lemon_man = 'images/lemon_man.png' 
+    death = 'images/death.png'
+    pepperment_butler = 'images/pepperment_butler.png'   # pepperment monster
+    ice_king = 'images/ice_king.png'     # blue character
+    gunter_image = 'images/gunter.png'    # penguin monster
+
     # hero image and setup of class
-    hero_image = pygame.image.load('images/finn.png')
-    hero = Hero(hero_image)
+    hero = Hero()
 
     # first row of monsters and setup of class
-    magic_man1 = pygame.image.load('images/magic_man.png')
-    lemon_man1 = pygame.image.load('images/lemon_man.png') 
-    magic_man1 = First_Row(magic_man1, 60)
-    lemon_man1 = First_Row(lemon_man1, 300)
+    magic_man1 = First_Row(magic_man, 60)
+    lemon_man1 = First_Row(lemon_man, 400)
+    
     
     # second row of monsters and setup of class
-    death = pygame.image.load('images/death.png')
-    death = Second_Row(death, 300)
-    pepperment_butler2 = pygame.image.load('images/pepperment_butler.png')
-    pepperment_butler2 = Second_Row(pepperment_butler2, 100)
+    death2 = Second_Row(death, 100)
+    pepperment_butler2 = Second_Row(pepperment_butler, 300)
 
     # third row of monsters and setup of class
-    ice_king3 = pygame.image.load('images/ice_king.png')
-    ice_king3 = Third_Row(ice_king3, 100)
-    gunter3_1 = pygame.image.load('images/gunter.png')
-    gunter3_1 = Third_Row(gunter3_1, 400)
-    gunter3_2 = pygame.image.load('images/gunter.png')
-    gunter3_2 = Third_Row(gunter3_2, 20)
+    ice_king3 = Third_Row(ice_king, 375)
+    gunter3_1 = Third_Row(gunter_image, 40)
+    gunter3_2 = Third_Row(gunter_image, 475)
     
-
 
     stop_game = False
     
-    # speed_x = 300
-    # speed_y = 300
     # giant loop for game
     # while not stop_game --> while stop_game is false)
     while not stop_game:
@@ -137,7 +115,7 @@ def main():
         magic_man1.update()
         lemon_man1.update()
 
-        death.update()
+        death2.update()
         pepperment_butler2.update()
 
         ice_king3.update()
@@ -187,7 +165,7 @@ def main():
         screen.blit(pygame.transform.scale(lemon_man1.image, (40, 60)), (lemon_man1.x, lemon_man1.y))
 
         # second_row monsters
-        screen.blit(pygame.transform.scale(death.image, (40, 65)), (death.x, death.y))
+        screen.blit(pygame.transform.scale(death2.image, (40, 65)), (death2.x, death2.y))
         screen.blit(pygame.transform.scale(pepperment_butler2.image, (40, 40)), (pepperment_butler2.x, pepperment_butler2.y))
 
         # thrid_row monsters
