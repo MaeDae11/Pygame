@@ -2,11 +2,9 @@ import pygame
 import random
 
 class Treasure(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, x, y, image):
         pygame.sprite.Sprite.__init__(self)
-        x = 650
-        y = random.randint(100, 600)
-        self.image = pygame.image.load('images/treasure.png')
+        self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
@@ -116,15 +114,24 @@ def main():
 
     # monster images
     magic_man = 'images/magic_man.png'
-    lemon_man = 'images/lemon_man.png' 
+    lemon_man = 'images/lemon_man.png'
     death = 'images/death.png'
     pepperment_butler = 'images/pepperment_butler.png'   # pepperment monster
     ice_king = 'images/ice_king.png'     # blue character
     gunter_image = 'images/gunter.png'    # penguin monster
 
-    treasure = Treasure()
+# could not get health to collide
+    # health_image = 'images/heart.png'
+    # health = Treasure(random.randint(200, 500), random.randint(200, 500), health_image)
+    # health_group = [health]
+    # health_found = pygame.sprite.RenderPlain(health_group)
+
+    treasure_image = 'images/treasure.png'
+    treasure = Treasure(650, random.randint(200, 500), treasure_image)
     treasure_group = [treasure]
     treasure_found = pygame.sprite.RenderPlain(treasure_group)
+
+
     # hero image and setup of class
     hero = Hero()
     hero_player = [hero]
@@ -173,6 +180,7 @@ def main():
         collisions_1st_row = pygame.sprite.groupcollide(hero_group, monsters_first_row_group, False, False)
         collisions_2nd_row = pygame.sprite.groupcollide(hero_group, monsters_second_row_group, False, False)
         collisions_3rd_row = pygame.sprite.groupcollide(hero_group, monsters_third_row_group, False, False)
+        # collision_health = pygame.sprite.groupcollide(hero_group, health_found, False, False)
 
         if hero.life > 0:
             if collisions_1st_row or collisions_2nd_row or collisions_3rd_row:
@@ -180,10 +188,15 @@ def main():
                 hero.y = 350
                 hero.x = 30
                 print hero.life
+
         if hero.life == 0:
             hero.image = pygame.image.load('images/explosion.png')
             background_image = pygame.image.load('images/game_over.png')
             print "Game Over"
+        
+        # if collision_health:
+        #     hero.life = hero.life + 1
+        #     print hero.life
 
         # collide with treasure chest and win game
         collision_treausre_chest = pygame.sprite.groupcollide(hero_group, treasure_found, False, False)
@@ -191,6 +204,7 @@ def main():
             background_image = pygame.image.load('images/adventure_time_background.png')
             print "You won!"
     
+        
 
         for event in pygame.event.get():
             
@@ -205,12 +219,6 @@ def main():
                     hero.y += 20
                 if event.key == pygame.K_UP:
                     hero.y -= 20
-
-
-
-                
-
-
 
             
             if event.type == pygame.KEYUP:
@@ -229,10 +237,10 @@ def main():
         # (0, 0) and (250, 250) is corrdinates of where the image starts 
         screen.blit(pygame.transform.scale(background_image, (700, 700)), (0, 0))
         screen.blit(pygame.transform.scale(treasure.image, (60, 60)), (treasure.x, treasure.y))
+        # screen.blit(pygame.transform.scale(health.image, (40, 40)), (health.x, health.y))
 
         # blit = drawing a thing to the screen
         # can put in render later if make class for monster1
-        
         screen.blit(pygame.transform.scale(hero.image, (45, 65)), (hero.x, hero.y))
         screen.blit(pygame.transform.scale(magic_man1.image, (40, 65)), (magic_man1.x, magic_man1.y))
         screen.blit(pygame.transform.scale(lemon_man1.image, (40, 60)), (lemon_man1.x, lemon_man1.y))
