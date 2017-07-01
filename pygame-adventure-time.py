@@ -1,6 +1,7 @@
 import pygame
 import random
 
+# win the game / treasure class
 class Treasure(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
         pygame.sprite.Sprite.__init__(self)
@@ -12,8 +13,7 @@ class Treasure(pygame.sprite.Sprite):
     def update(self):
         self.rect.topleft = self.x, self.y
     
-
-
+# playable hero class
 class Hero(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -29,18 +29,16 @@ class Hero(pygame.sprite.Sprite):
     def update(self):
         self.rect.topleft = self.x, self.y
 
-
-# first row of monsters
-class First_Row(pygame.sprite.Sprite):
-    def __init__(self, image, y):
+# monster class
+class Monsters(pygame.sprite.Sprite):
+    def __init__(self, image, x, y, speed_x, speed_y ):
         pygame.sprite.Sprite.__init__(self)
-        x = 100
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.y = y
         self.x = x
-        self.speed_y = 2
-        self.speed_x = 2
+        self.speed_y = speed_x
+        self.speed_x = speed_y
 
     def update(self):
         self.y += self.speed_y
@@ -48,61 +46,14 @@ class First_Row(pygame.sprite.Sprite):
             self.y = 10
         self.rect.topleft = self.x, self.y
 
-        
-# second row of monsters
-class Second_Row(pygame.sprite.Sprite):
-    def __init__(self, image, y):
-        pygame.sprite.Sprite.__init__(self)
-        x = 300
-        self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
-        self.x = x
-        self.y = y
-        self.speed_y = 3
-        self.speed_x = 3
 
-    def update(self):
-        self.y += self.speed_y
-        if self.y >= 680:
-            self.y = 10
-        self.rect.topleft = self.x, self.y
-
-# third row of monsters / move fastes
-class Third_Row(pygame.sprite.Sprite):
-    def __init__(self, image, y):
-        pygame.sprite.Sprite.__init__(self)
-        x = 500
-        self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
-
-        self.x = x
-        self.y = y
-        self.speed_y = 4
-        self.speed_x = 4
-
-    def update(self):
-        self.y += self.speed_y
-        if self.y >= 680:
-            self.y = 10
-        self.rect.topleft = self.x, self.y
-    
-
-
-
-
-
-
-
-
+# main function to run game
 def main():
 
     width = 700
     height = 700
-    blue_color = (97, 159, 182)
     
     pygame.init()
-
-    
 
     # everything done to screen, must be tuple otherwise python would read it as two separate things
     screen = pygame.display.set_mode((width, height))
@@ -137,25 +88,21 @@ def main():
     hero_player = [hero]
     hero_group = pygame.sprite.RenderPlain(hero_player)
     # first row of monsters and setup of class
-    magic_man1 = First_Row(magic_man, random.randint(30, 100))
-    lemon_man1 = First_Row(lemon_man, random.randint(280, 375))
-    monsters_first_row = [magic_man1, lemon_man1]
-    monsters_first_row_group = pygame.sprite.RenderPlain(monsters_first_row)
+    magic_man1 = Monsters(magic_man, 100, random.randint(30, 100), 2, 2)
+    lemon_man1 = Monsters(lemon_man, 100, random.randint(280, 375), 2, 2)
     
     # second row of monsters and setup of class
-    death2 = Second_Row(death, 100)
-    pepperment_butler2 = Second_Row(pepperment_butler, 300)
-    monsters_second_row = [death2, pepperment_butler2]
-    monsters_second_row_group = pygame.sprite.RenderPlain(monsters_second_row)
+    death2 = Monsters(death, 300, 100, 3, 3)
+    pepperment_butler2 = Monsters(pepperment_butler, 300, 400, 3, 3)
 
     # third row of monsters and setup of class
-    ice_king3 = Third_Row(ice_king, 375)
-    gunter3_1 = Third_Row(gunter_image, 40)
-    gunter3_2 = Third_Row(gunter_image, 475)
-    monsters_third_row = [ice_king3, gunter3_1, gunter3_2]
-    monsters_third_row_group = pygame.sprite.RenderPlain(monsters_third_row)
-    
-    
+    ice_king3 = Monsters(ice_king, 500, 375, 4, 4)
+    gunter3_1 = Monsters(gunter_image, 500, 40, 4, 4)
+    gunter3_2 = Monsters(gunter_image, 500, 475, 4, 4)
+
+    # monster group for collosion
+    monsters = [magic_man1, lemon_man1, death2, pepperment_butler2, ice_king3, gunter3_1, gunter3_2]
+    monsters_group = pygame.sprite.RenderPlain(monsters)
 
     stop_game = False
     
@@ -177,39 +124,34 @@ def main():
         gunter3_2.update()
 
         # collide with monster and loose game
-        collisions_1st_row = pygame.sprite.groupcollide(hero_group, monsters_first_row_group, False, False)
-        collisions_2nd_row = pygame.sprite.groupcollide(hero_group, monsters_second_row_group, False, False)
-        collisions_3rd_row = pygame.sprite.groupcollide(hero_group, monsters_third_row_group, False, False)
-        # collision_health = pygame.sprite.groupcollide(hero_group, health_found, False, False)
+        collisions_monsters = pygame.sprite.groupcollide(hero_group, monsters_group, False, False)
+
 
         if hero.life > 0:
-            if collisions_1st_row or collisions_2nd_row or collisions_3rd_row:
+            if collisions_monsters:
                 hero.life = hero.life - 1
                 hero.y = 350
                 hero.x = 30
                 print hero.life
 
+        # game over title
         if hero.life == 0:
             hero.image = pygame.image.load('images/explosion.png')
             background_image = pygame.image.load('images/game_over.png')
             print "Game Over"
         
-        # if collision_health:
-        #     hero.life = hero.life + 1
-        #     print hero.life
-
-        # collide with treasure chest and win game
+        # collision with treasure chest to win game
         collision_treausre_chest = pygame.sprite.groupcollide(hero_group, treasure_found, False, False)
+    
+        # win game title
         if collision_treausre_chest:
             background_image = pygame.image.load('images/adventure_time_background.png')
             print "You won!"
     
-        
 
         for event in pygame.event.get():
             
-
-        # check out slack if want continual press down
+        # movement for Hero character
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     hero.x -= 20
@@ -220,11 +162,11 @@ def main():
                 if event.key == pygame.K_UP:
                     hero.y -= 20
 
-            
+            # incase would like to add more key features latere
             if event.type == pygame.KEYUP:
                 pass
-
-
+            
+            # stops game
             if event.type == pygame.QUIT:
                 stop_game = True
         
@@ -232,14 +174,10 @@ def main():
         ####### Game logic
           
         # Draw background
-        
-
         # (0, 0) and (250, 250) is corrdinates of where the image starts 
         screen.blit(pygame.transform.scale(background_image, (700, 700)), (0, 0))
         screen.blit(pygame.transform.scale(treasure.image, (60, 60)), (treasure.x, treasure.y))
-        # screen.blit(pygame.transform.scale(health.image, (40, 40)), (health.x, health.y))
 
-        # blit = drawing a thing to the screen
         # can put in render later if make class for monster1
         screen.blit(pygame.transform.scale(hero.image, (45, 65)), (hero.x, hero.y))
         screen.blit(pygame.transform.scale(magic_man1.image, (40, 65)), (magic_man1.x, magic_man1.y))

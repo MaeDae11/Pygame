@@ -38,3 +38,7 @@ Bugs to figure out later:
     3. Adding a menu before the game. I'd love to add this feature at some point. Maybe pick which character you would want to play as. And even add more levels.
 
     4. I tried adding a health item, but for some reason the collision was not working so it is simply commented out at this time.
+
+
+
+Please add anything you'd like!
