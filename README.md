@@ -22,23 +22,33 @@ The project began with a rough outline:
 
 From there, the addition of hero and one monster was made. This lead to using classes, additional functions and building on top of the outline.
 
-Difficulties:
+<b>Difficulties:</b>
 
     1. Even starting was difficult. Understanding how the module of Pygame interacted with Python and what suffexs to use throughout the code. So in addition of combining all the concepts of the first two weeks of school - variables, modules, functions, classes, etc - we used Pygame features as well.
 
     2. My main difficulty was collision between the hero and monsters. While I scale how the images show up within the game, the actual image imported was much larger. This lead to collisions being triggered when the two objects did not look close to each other, but were indeed colliding. After help from my team debugging this issue, it was much easier to move forward.
 
 
-Bugs to figure out later:
+<b>Bugs to figure out later:</b>
 
     1. How to offically end the game without quitting completely. Right now, the background changes to indicate wheather or not the user has won or lost, but you can still move around as an exploded image. 
     
-    2. Condensing my code down. There is a lot of repedition at this time that I would like to condense either over the weekend or down the road. However, with not knowing what Python was a month ago, I'm pretty happy with the product as of right now.
+    2. Condensing my code down. There is a lot of repedition at this time that I would like to condense. However, with not knowing what Python was a month ago, I'm pretty happy with the product as of right now.
 
     3. Adding a menu before the game. I'd love to add this feature at some point. Maybe pick which character you would want to play as. And even add more levels.
 
-    4. I tried adding a health item, but for some reason the collision was not working so it is simply commented out at this time.
 
+<b>Images</b>
+<img src="images/Pygame-Play-Screen.png" alt="screen shot of pygame demo with forest background. displays monsters, Hero, heath heart and treasure chest">
+<h4>Game play is structured like the game Frogger. You start on one side of the screen and avoid the monsters as you try and reach the treasure chest to win</h4>
+<h4>The user Hero out with 3 lives. Each time the Hero runs into a monster, 1 life is lost. If the Hero obtains a heart, the Hero gains 1 life.</h4>
+<br />
 
+<img src="images/Pygame-Win-Screen.png" alt="screen shot of pygame demo when Hero wins">
+<h4>This is the screen that shows when the Hero crosses the monsters path and reaches the treasure chest</h4>
+<br />
+
+<img src="images/Pygame-GameOver-Screen.png" alt="screen show ot pygame demo when Hero looses">
+<h4>Unfortunatly, if the Hero is unable to avoid the monsters and lives reach zero, the Hero has lost his quest for the treasure chest.</h4>
 
 Please add anything you'd like!
