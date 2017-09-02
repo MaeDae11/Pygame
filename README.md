@@ -9,15 +9,16 @@ You start with Life = 3. If you touch a monster, you are transported back to the
 All along, the goal is to reach the treasure chest on the other side. (basically move left to right).
 
 
-The project began with a rough outline:
-    1. defined function main()
-    2. pygame.init()
-    3. stop_game = False
-    4. while not stop_game:
-    4. pygame.quit()
+<ul>The project began with a rough outline:
+<li>1. defined function main()</li>
+<li> 2. pygame.init()</li>
+<li>3. stop_game = False</li>
+<li>4. while not stop_game:</li>
+<li>4. pygame.quit()</li>
      <!--finally calling the main function to start the game-->
-    5. if __name__ == '__main__':
-           main()
+   <li> 5. if __name__ == '__main__':
+   main()</li>
+</ul>
 
 
 From there, the addition of hero and one monster was made. This lead to using classes, additional functions and building on top of the outline.
@@ -39,16 +40,16 @@ From there, the addition of hero and one monster was made. This lead to using cl
 
 
 <b>Images</b>
-<img src="images/PyGame-Play-Screen.png" alt="screen shot of pygame demo with forest background. displays monsters, Hero, heath heart and treasure chest" style="width: 400px">
+<img src="images/PyGame-Play-Screen.png" alt="screen shot of pygame demo with forest background. displays monsters, Hero, heath heart and treasure chest" style="width: 200px;"/>
 <h4>Game play is structured like the game Frogger. You start on one side of the screen and avoid the monsters as you try and reach the treasure chest to win</h4>
 <h4>The user Hero out with 3 lives. Each time the Hero runs into a monster, 1 life is lost. If the Hero obtains a heart, the Hero gains 1 life.</h4>
 <br />
 
-<img src="images/PyGame-Win-Screen.png" alt="screen shot of pygame demo when Hero wins" style="width: 400px">
+<img src="images/PyGame-Win-Screen.png" alt="screen shot of pygame demo when Hero wins" style="height: 200px;"/>
 <h4>This is the screen that shows when the Hero crosses the monsters path and reaches the treasure chest</h4>
 <br />
 
-<img src="images/PyGame-GameOver-Screen.png" alt="screen shot of pygame demo when Hero looses" style="width: 400px">
+<img src="images/PyGame-GameOver-Screen.png" alt="screen shot of pygame demo when Hero looses" style="width: 200px;"/>
 <h4>Unfortunatly, if the Hero is unable to avoid the monsters and lives reach zero, the Hero has lost his quest for the treasure chest.</h4>
 <br />
 
