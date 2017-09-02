@@ -13,7 +13,6 @@ class Treasure(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.topleft = self.x, self.y
-    
 # playable hero class
 class Hero(pygame.sprite.Sprite):
     def __init__(self):
@@ -190,7 +189,10 @@ def main():
         
 
         ####### Game logic
-          
+        # def drawToScreen(img, width, height, x, y):
+        #     draw = screen.blit(pygame.transform.scale(img, (width, height)), (x, y))
+
+
         # Draw background
         # (0, 0) and (250, 250) is corrdinates of where the image starts 
         screen.blit(pygame.transform.scale(background_image, (700, 700)), (0, 0))

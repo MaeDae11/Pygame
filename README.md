@@ -50,5 +50,43 @@ From there, the addition of hero and one monster was made. This lead to using cl
 
 <img src="images/Pygame-GameOver-Screen.png" alt="screen show ot pygame demo when Hero looses">
 <h4>Unfortunatly, if the Hero is unable to avoid the monsters and lives reach zero, the Hero has lost his quest for the treasure chest.</h4>
+<br />
 
-Please add anything you'd like!
+<h2>Code snipits</h2>
+<h4>Below establishes the different classes of Hero and Mosters</h4>
+```python
+# playable hero class
+class Hero(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        x = 30
+        y = 350
+        life = 3
+        self.image = pygame.image.load('images/finn_resized.png')
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.life_stage = "Life: "
+        self.life = life
+        
+    def update(self):
+        self.rect.topleft = self.x, self.y
+
+# monster class
+class Monsters(pygame.sprite.Sprite):
+    def __init__(self, image, x, y, speed_x, speed_y ):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(image)
+        self.rect = self.image.get_rect()
+        self.y = y
+        self.x = x
+        self.speed_y = speed_x
+        self.speed_x = speed_y
+
+    def update(self):
+        self.y += self.speed_y
+        if self.y >= 680:
+            self.y = 10
+        self.rect.topleft = self.x, self.y
+
+```
