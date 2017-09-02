@@ -39,16 +39,16 @@ From there, the addition of hero and one monster was made. This lead to using cl
 
 
 <b>Images</b>
-<img src="images/Pygame-Play-Screen.png" alt="screen shot of pygame demo with forest background. displays monsters, Hero, heath heart and treasure chest">
+<img src="images/PyGame-Play-Screen.png" alt="screen shot of pygame demo with forest background. displays monsters, Hero, heath heart and treasure chest" style="width: 400px">
 <h4>Game play is structured like the game Frogger. You start on one side of the screen and avoid the monsters as you try and reach the treasure chest to win</h4>
 <h4>The user Hero out with 3 lives. Each time the Hero runs into a monster, 1 life is lost. If the Hero obtains a heart, the Hero gains 1 life.</h4>
 <br />
 
-<img src="images/Pygame-Win-Screen.png" alt="screen shot of pygame demo when Hero wins">
+<img src="images/PyGame-Win-Screen.png" alt="screen shot of pygame demo when Hero wins" style="width: 400px">
 <h4>This is the screen that shows when the Hero crosses the monsters path and reaches the treasure chest</h4>
 <br />
 
-<img src="images/Pygame-GameOver-Screen.png" alt="screen show ot pygame demo when Hero looses">
+<img src="images/PyGame-GameOver-Screen.png" alt="screen shot of pygame demo when Hero looses" style="width: 400px">
 <h4>Unfortunatly, if the Hero is unable to avoid the monsters and lives reach zero, the Hero has lost his quest for the treasure chest.</h4>
 <br />
 
