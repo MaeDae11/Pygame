@@ -54,7 +54,8 @@ From there, the addition of hero and one monster was made. This lead to using cl
 
 <h2>Code snipits</h2>
 <h4>Below establishes the different classes of Hero and Mosters</h4>
-```python
+
+```
 # playable hero class
 class Hero(pygame.sprite.Sprite):
     def __init__(self):
